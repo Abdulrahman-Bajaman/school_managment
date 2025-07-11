@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Management System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <style>
+    .sidebar { min-height: 100vh; background-color: #343a40; }
+    .sidebar .nav-link { color: #fff; border-radius: 5px; margin: 2px 0; }
+    .sidebar .nav-link:hover,
+    .sidebar .nav-link.active { background-color: #495057; color: #fff; }
+    .main-content { min-height: 100vh; }
+    .status-active { color: #28a745; }
+    .status-inactive { color: #dc3545; }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3 col-lg-2 sidebar p-3">
+        <h4 class="text-white mb-4">
+          <i class="fas fa-school"></i> School System
+        </h4>
+        <nav class="nav flex-column">
+         <%# <%= link_to '<i class="fas fa-building"></i> Schools List'.html_safe, schools_path, class: 'nav-link' %> %
+         <%# <%= link_to '<i class="fas fa-plus"></i> Add School'.html_safe, new_school_path, class: 'nav-link' %> %
+
+          <%# <%= link_to '<i class="fas fa-users"></i> Students List'.html_safe, students_path, class: 'nav-link' %>
+          <%# <%= link_to '<i class="fas fa-user-plus"></i> Add Student'.html_safe, new_student_path, class: 'nav-link' %> 
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-9 col-lg-10 main-content p-4">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // function showFieldError(fieldId, message) {
+    //   const field = document.getElementById(fieldId);
+    //   field.classList.add('is-invalid');
+    //   const feedback = field.nextElementSibling;
+    //   if (feedback && feedback.classList.contains('invalid-feedback')) {
+    //     feedback.textContent = message;
+    //   }
+    // }
+
+    // function clearValidation(formId) {
+    //   const form = document.getElementById(formId);
+    //   form.querySelectorAll('.is-invalid').forEach(field => {
+    //     field.classList.remove('is-invalid');
+    //   });
+    //   form.querySelectorAll('.invalid-feedback').forEach(feedback => {
+    //     feedback.textContent = '';
+    //   });
+    // }
+
+    // function setActiveNav(page) {
+    //   document.querySelectorAll('.nav-link').forEach(link => {
+    //     link.classList.remove('active');
+    //     if (link.getAttribute('href') === page) {
+    //       link.classList.add('active');
+    //     }
+    //   });
+    // }
+  </script>
+</body>
+</html>
