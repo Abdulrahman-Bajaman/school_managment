@@ -1,15 +1,16 @@
 class SchoolsController < ApplicationController
   before_action :set_school, only: %i[edit update]
 
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+
   def edit
-    @school
   end
 
-  def update 
+  def update
     if @school.update(school_params)
-      render plain: "updated successfully"
+      render json: { message: "Updated successfully", school: @school }, status: :ok
     else
-      render plain: "failed to update"
+      render json: { message: "Failed to update", errors: @school.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -22,4 +23,9 @@ class SchoolsController < ApplicationController
   def set_school
     @school = School.find(params[:id])
   end
+
+  def render_not_found
+    render json: { error: "School not found with id #{params[:id]}" }, status: :not_found
+  end
 end
+
