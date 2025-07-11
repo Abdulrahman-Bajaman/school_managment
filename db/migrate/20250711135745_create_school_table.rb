@@ -4,7 +4,7 @@ class CreateSchoolTable < ActiveRecord::Migration[8.0]
       t.string :name_en, limit: 100, null: false
       t.string :name_ar, limit: 100, null: false
       t.string :address
-      t.boolean :status, null: false
+      t.integer :status, null: false
       t.timestamps
     end
 
