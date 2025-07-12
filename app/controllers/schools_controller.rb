@@ -4,13 +4,13 @@ class SchoolsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
   def show
-    render json: {
-      id: @school.id,
-      name_ar: @school.name_ar,
-      name_en: @school.name_en,
-      address: @school.address,
-      status: @school.status
-    }
+    # render json: {
+    #   id: @school.id,
+    #   name_ar: @school.name_ar,
+    #   name_en: @school.name_en,
+    #   address: @school.address,
+    #   status: @school.status
+    # }
   end
 
   private
