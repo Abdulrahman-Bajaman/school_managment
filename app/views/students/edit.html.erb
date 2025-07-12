@@ -1,0 +1,81 @@
+<% flash.each do |key, message| %>
+  <% alert_class = case key.to_sym
+    when :success then "alert-success"
+    when :error then "alert-danger"
+    else "alert-info"
+  end %>
+  <div class="alert <%= alert_class %>">
+    <%= message %>
+  </div>
+<% end %>
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h3><i class="fas fa-edit"></i> Edit Student</h3>
+      </div>
+      <div class="card-body">
+        <%= form_with model: @student, local: true, html: { id: "studentForm" } do |f| %>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <%= f.label :full_name, "Full Name *", class: "form-label" %>
+              <%= f.text_field :full_name, class: "form-control", required: true %>
+              <% if @student.errors[:full_name].any? %>
+                <div class="invalid-feedback d-block"><%= @student.errors[:full_name].first %></div>
+              <% end %>
+            </div>
+            <div class="col-md-6 mb-3">
+              <%= f.label :school_id, "School *", class: "form-label" %>
+              <%= f.collection_select :school_id, @schools, :id, :name_en, { prompt: "Select School" }, { class: "form-select", required: true } %>
+              <%# <%= f.collection_select :school_id, @school, :id, :name_en, { prompt: "Select School" }, { class: "form-select", required: true } %> 
+
+              <% if @student.errors[:school_id].any? %>
+                <div class="invalid-feedback d-block"><%= @student.errors[:school_id].first %></div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <%= f.label :status, "Status *", class: "form-label" %>
+              <%= f.select :status, [["Active", "active"], ["Inactive", "inactive"]], { prompt: "Select Status" }, { class: "form-select", required: true } %>
+              <% if @student.errors[:status].any? %>
+                <div class="invalid-feedback d-block"><%= @student.errors[:status].first %></div>
+              <% end %>
+            </div>
+            <div class="col-md-6 mb-3">
+              <%= f.label :date_of_birth, "Date of Birth *", class: "form-label" %>
+              <%= f.date_field :date_of_birth, class: "form-control", required: true %>
+              <% if @student.errors[:date_of_birth].any? %>
+                <div class="invalid-feedback d-block"><%= @student.errors[:date_of_birth].first %></div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <%= f.label :address, "Address *", class: "form-label" %>
+              <%= f.text_field :address, class: "form-control", required: true %>
+              <% if @student.errors[:address].any? %>
+                <div class="invalid-feedback d-block"><%= @student.errors[:address].first %></div>
+              <% end %>
+            </div>
+            <div class="col-md-6 mb-3">
+              <%= f.label :phone_number, "Mobile *", class: "form-label" %>
+              <%= f.telephone_field :phone_number, class: "form-control", required: true %>
+              <% if @student.errors[:phone_number].any? %>
+                <div class="invalid-feedback d-block"><%= @student.errors[:phone_number].first %></div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2">
+            <%= f.submit "Update Student", class: "btn btn-primary" %>
+            <%= link_to "Cancel", class: "btn btn-secondary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
