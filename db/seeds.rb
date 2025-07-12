@@ -70,3 +70,4 @@ School.create!([
     status: 1
   }
 ])
+

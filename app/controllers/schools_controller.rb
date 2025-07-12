@@ -23,3 +23,4 @@ class SchoolsController < ApplicationController
     render json: { error: "School not found" }, status: :not_found
   end
 end
+
