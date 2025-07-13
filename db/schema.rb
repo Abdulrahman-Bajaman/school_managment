@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_12_093407) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_11_135745) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -18,9 +19,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_12_093407) do
     t.string "name_en", limit: 100, null: false
     t.string "name_ar", limit: 100, null: false
     t.string "address"
+    t.integer "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status"
     t.index ["name_ar"], name: "index_schools_on_name_ar", unique: true
     t.index ["name_en"], name: "index_schools_on_name_en", unique: true
   end
@@ -36,6 +37,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_12_093407) do
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_students_on_school_id"
   end
-
   add_foreign_key "students", "schools", on_delete: :cascade
 end
