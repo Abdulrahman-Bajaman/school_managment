@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2025_07_11_135745) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -24,4 +25,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_135745) do
     t.index ["name_ar"], name: "index_schools_on_name_ar", unique: true
     t.index ["name_en"], name: "index_schools_on_name_en", unique: true
   end
+
+  create_table "students", force: :cascade do |t|
+    t.string "full_name", null: false
+    t.integer "status", null: false
+    t.bigint "school_id", null: false
+    t.date "date_of_birth", null: false
+    t.string "address", null: false
+    t.string "phone_number", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_students_on_school_id"
+  end
+  add_foreign_key "students", "schools", on_delete: :cascade
 end
